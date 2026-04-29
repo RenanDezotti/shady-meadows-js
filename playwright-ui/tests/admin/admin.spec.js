@@ -70,7 +70,7 @@ test.describe("Admin Rooms Tab", () => {
     //console.log(`Rooms found in admin panel: ${roomCount}`);
   });
 
-  test(" should verify admin room count matches homepage Book now links", async ({
+  test("should verify admin room count matches homepage Book now links", async ({
     page,
   }) => {
     test.skip(
@@ -79,7 +79,7 @@ test.describe("Admin Rooms Tab", () => {
     );
     const adminPage = new AdminPage(page);
 
-    // Step 1 — get room count from admin panel
+    //get room count from admin panel
     await adminPage.navigateToAdmin();
     await adminPage.login(ADMIN.username, ADMIN.password);
     await adminPage.navigateToRooms();
@@ -87,7 +87,7 @@ test.describe("Admin Rooms Tab", () => {
     const adminRoomCount = await adminPage.getRoomCount();
     //console.log(`Admin panel rooms: ${adminRoomCount}`);
 
-    // Step 2 — get Book now count from public homepage
+    //get Book now count from public homepage
     const homePage = new HomePage(page);
     await homePage.navigate();
 
