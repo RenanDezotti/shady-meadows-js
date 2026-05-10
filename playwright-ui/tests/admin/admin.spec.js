@@ -9,9 +9,9 @@ test.describe("Admin Authentication", () => {
 
     await adminPage.navigateToAdmin();
 
-    await expect(page.getByPlaceholder("Username")).toBeVisible();
-    await expect(page.getByPlaceholder("Password")).toBeVisible();
-    await expect(page.getByRole("button", { name: "Login" })).toBeVisible();
+    await expect(adminPage.usernameInput).toBeVisible();
+    await expect(adminPage.passwordInput).toBeVisible();
+    await expect(adminPage.loginButton).toBeVisible();
   });
 
   test("should login successfully with valid credentials", async ({ page }) => {
@@ -20,7 +20,7 @@ test.describe("Admin Authentication", () => {
     await adminPage.navigateToAdmin();
     await adminPage.login(ADMIN.username, ADMIN.password);
 
-    await expect(page.getByRole("button", { name: "Login" })).not.toBeVisible();
+    await expect(adminPage.loginButton).not.toBeVisible();
   });
 
   test("should display Logout button after login", async ({ page }) => {
@@ -38,7 +38,7 @@ test.describe("Admin Authentication", () => {
     await adminPage.navigateToAdmin();
     await adminPage.login(ADMIN.username, ADMIN.password);
 
-    await expect(page.getByRole("link", { name: "Rooms" })).toBeVisible();
+    await expect(adminPage.roomsNavLink).toBeVisible();
     await expect(adminPage.logoutButton).toBeVisible();
   });
 
@@ -51,7 +51,7 @@ test.describe("Admin Authentication", () => {
 
     await adminPage.logout();
 
-    await expect(page.getByRole("button", { name: "Login" })).toBeVisible();
+    await expect(adminPage.loginButton).toBeVisible();
   });
 });
 
